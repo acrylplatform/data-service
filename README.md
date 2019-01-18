@@ -1,12 +1,12 @@
-# Waves data service API
+# Acryl data service API
 
 **⚠️ This service is currently in /v0. Breaking changes are coming in /v1 (also possible, but not likely, within /v0 releases). Please use with caution.**
 
 This is an API aimed at retrieving data from blockchain quickly and conveniently. We  support public APIs for: 
 - Mainnet
-  - [https://api.wavesplatform.com/v0/](https://api.wavesplatform.com/v0/)
+  - [https://api.acrylplatform.com/v0/](https://api.wavesplatform.com/v0/)
 - Testnet
-  - [https://api.testnet.wavesplatform.com/v0/](https://api.testnet.wavesplatform.com/v0/)
+  - [https://apitestnet.acrylplatform.com/v0/](https://api.testnet.wavesplatform.com/v0/)
 
 Visit `/docs` for Swagger documentation.
 
@@ -45,11 +45,11 @@ If you would like to use some other way of setting environment variables, just r
 ##### Docker
 1. Build a Docker image from the project root
    ```bash
-   docker build -t wavesplatform/data-service .
+   docker build -t acrylplatform/data-service .
    ```
 2. Run the container
    ```bash
-   docker run -p=<port>:3000 --env-file=variables.env wavesplatform/data-service
+   docker run -p=<port>:3000 --env-file=variables.env acrylplatform/data-service
    ```
       
 A server will start at `localhost:<port>` (used in the `docker run` command). Logs will be handled by Docker. Use any other Docker options if necessary.
