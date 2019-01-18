@@ -4,9 +4,9 @@
 
 This is an API aimed at retrieving data from blockchain quickly and conveniently. We  support public APIs for: 
 - Mainnet
-  - [https://api.acrylplatform.com/v0/](https://api.wavesplatform.com/v0/)
+  - [https://api.acrylplatform.com/v0/](https://api.acrylplatform.com/v0/)
 - Testnet
-  - [https://apitestnet.acrylplatform.com/v0/](https://api.testnet.wavesplatform.com/v0/)
+  - [https://apitestnet.acrylplatform.com/v0/](https://apitestnet.acrylplatform.com/v0/)
 
 Visit `/docs` for Swagger documentation.
 
