@@ -17,7 +17,7 @@ const { renameKeys } = require('ramda-adjunct');
 const { Interval, List } = require('../../types');
 const concatAll = require('../../utils/fp/concatAll');
 const { floor, ceil, add, trunc } = require('../../utils/date');
-const { Candle } = require('../../types/index');
+const { Candle } = require('../../types/index'); 
 const { candleMonoid } = require('./candleMonoid');
 
 const truncToMinutes = trunc('minutes');
@@ -41,7 +41,29 @@ const transformCandle = ([time, candle]) => {
       'p_dec'
     ]),
     renameFields,
-    assoc('time_start', new Date(`${time}Z`)),
+    assoc('time_start', new Date(`${time}Z`)), 
+    ifElse(isEmpty, map(always(null)), identity)
+  )(candle);
+};
+
+const transformToOldCandle = ([time, candle]) => {
+  const isEmpty = c => c.txs_count === 0;
+  const renameFields = renameKeys({
+    quote_volume: 'quoteVolume',
+    weighted_average_price: 'weightedAveragePrice',
+    max_height: 'maxHeight',
+    txs_count: 'txsCount',
+    time_start: 'time',
+  });
+
+  return compose(
+    // Removed new candle data format
+    omit([
+      'a_dec',
+      'p_dec'
+    ]),
+    renameFields,
+    assoc('time_start', +new Date(`${time}Z`)), // Return timestamp
     ifElse(isEmpty, map(always(null)), identity)
   )(candle);
 };
@@ -85,10 +107,22 @@ const candleFixedDecimals = (candle, aDecimals, pDecimals) =>
   );
 
 /** transformResults :: (CandleDbResponse[], request) -> List Maybe t */
-const transformResults = (result, request) =>
-  compose(
-    List,
-    map(transformCandle),
+const transformResults = (result, request) => {
+  const { timeStart, timeEnd, oldVersion } = request.params;
+  
+  // Old type of list
+  function oldList (items = [], meta = {}) { 
+    return { 
+      // __type: 'list',
+      ...meta,
+      timeStart: +timeStart,
+      timeEnd: +timeEnd,
+      candles: items,
+    }}
+
+  return compose(
+    oldVersion ? oldList : List, 
+    oldVersion ? map(transformToOldCandle) : map(transformCandle),
     sort((a, b) => new Date(a[0]) - new Date(b[0])),
     toPairs,
     map(candle =>
@@ -108,6 +142,7 @@ const transformResults = (result, request) =>
       )
     )
   )(result);
+};
 
 module.exports = {
   addMissingCandles,

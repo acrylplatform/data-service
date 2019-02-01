@@ -13,15 +13,16 @@ const candlesSearch = async ctx => {
     emitEvent: ctx.eventBus.emit,
   });
 
-  const { fromParams } = select(ctx);
+  const { fromParams } = select(ctx); 
   const [amountAsset, priceAsset] = fromParams(['amountAsset', 'priceAsset']);
-  
+ 
   const { query } = select(ctx);
 
   const fValues = parseFilterValues({
     timeStart,
     timeEnd,
     interval: identity,
+    oldVersion: identity, // Parameter for old queries
   })(query);
 
   // default
@@ -43,7 +44,7 @@ const candlesSearch = async ctx => {
     })
     .run()
     .promise();
-
+  
   ctx.eventBus.emit('ENDPOINT_RESOLVED', {
     value: results,
   });
