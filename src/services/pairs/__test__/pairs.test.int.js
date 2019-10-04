@@ -1,16 +1,22 @@
 const pg = require('knex')({ client: 'pg' });
+const { of: taskOf } = require('folktale/concurrency/task');
 const { createPgDriver } = require('../../../db');
-const loadConfig = require('../../../loadConfig');
+const { loadConfig } = require('../../../loadConfig');
 const options = loadConfig();
 const pgDriver = createPgDriver(options);
-const create = require('../index');
+const create = require('../').default;
+const { create: createCache } = require('../cache');
 const { BigNumber } = require('@waves/data-entities');
 let pair;
+
+const cache = createCache(1000, 5000);
 
 describe('Pairs', () => {
   const service = create({
     drivers: { pg: pgDriver },
     emitEvent: () => () => null,
+    cache,
+    validatePairs: () => taskOf(undefined),
   });
 
   beforeAll(async () => {
@@ -18,6 +24,7 @@ describe('Pairs', () => {
       .one(
         pg('pairs')
           .select('*')
+          .where('matcher', options.matcher.defaultMatcherAddress)
           .limit(1)
           .toString()
       )
@@ -27,13 +34,16 @@ describe('Pairs', () => {
 
   describe('get one pair', () => {
     it('should return Pair for one correctly', async () => {
-      const result = await service
+      const result = (await service
         .get({
-          amountAsset: pair.amount_asset_id,
-          priceAsset: pair.price_asset_id,
+          pair: {
+            amountAsset: pair.amount_asset_id,
+            priceAsset: pair.price_asset_id,
+          },
+          matcher: pair.matcher,
         })
         .run()
-        .promise();
+        .promise()).unsafeGet();
 
       expect(result.data).toHaveProperty('firstPrice', pair.first_price);
       expect(result.data).toHaveProperty('lastPrice', pair.last_price);
@@ -42,22 +52,29 @@ describe('Pairs', () => {
       expect(result.data).toHaveProperty('volume', pair.volume);
       expect(result.data).toHaveProperty('quoteVolume', pair.quote_volume);
       expect(result.data).toHaveProperty('volumeWaves', pair.volume_waves);
-      expect(result.data).toHaveProperty('weightedAveragePrice', pair.weighted_average_price);
+      expect(result.data).toHaveProperty(
+        'weightedAveragePrice',
+        pair.weighted_average_price
+      );
       expect(result.data).toHaveProperty('txsCount', pair.txs_count);
     });
 
     it('should return null for non existing pair', done => {
       service
         .get({
-          amountAsset: '111',
-          priceAsset: '222',
+          pair: {
+            amountAsset: '111',
+            priceAsset: '222',
+          },
+          matcher: options.matcher.defaultMatcherAddress,
         })
         .run()
         .listen({
-          onResolved: nullable => {
-            expect(nullable).toEqual(null);
+          onResolved: pair => {
+            expect(pair).toBeNothing();
             done();
           },
+          onRejected: done.fail,
         });
     });
   });
@@ -65,12 +82,15 @@ describe('Pairs', () => {
   describe('get many pairs', () => {
     it('should return Pairs for one correctly', async () => {
       const result = await service
-        .mget([
-          {
-            amountAsset: pair.amount_asset_id,
-            priceAsset: pair.price_asset_id,
-          },
-        ])
+        .mget({
+          pairs: [
+            {
+              amountAsset: pair.amount_asset_id,
+              priceAsset: pair.price_asset_id,
+            },
+          ],
+          matcher: options.matcher.defaultMatcherAddress,
+        })
         .run()
         .promise();
 
@@ -89,17 +109,20 @@ describe('Pairs', () => {
 
     it('should return null for non existing pairs', done => {
       service
-        .mget([
-          {
-            amountAsset: '111',
-            priceAsset: '222',
-          },
-        ])
+        .mget({
+          pairs: [
+            {
+              amountAsset: '111',
+              priceAsset: '222',
+            },
+          ],
+          matcher: options.matcher.defaultMatcherAddress,
+        })
         .run()
         .listen({
           onResolved: pairs => {
             expect(pairs.__type).toEqual('list');
-            expect(pairs.data).toEqual([null]);
+            expect(pairs.data).toEqual([{ __type: 'pair', data: null }]);
             done();
           },
         });
@@ -110,7 +133,9 @@ describe('Pairs', () => {
     it('should return Pairs correctly', async () => {
       const result = await service
         .search({
-          limit: 2
+          matcher: options.matcher.defaultMatcherAddress,
+          search_by_assets: ['WAVES', 'BTC'],
+          limit: 2,
         })
         .run()
         .promise();

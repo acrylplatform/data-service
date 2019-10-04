@@ -1,16 +1,8 @@
-const {
-  isNil,
-  identity,
-  always,
-  ifElse,
-  defaultTo,
-  compose,
-} = require('ramda');
+const { identity, defaultTo, compose } = require('ramda');
 
-const { parseDate } = require('../../../utils/parseDate');
+const { dateOrNull } = require('../../../utils/parseDate');
 const { parseArrayQuery } = require('../../utils/parseArrayQuery');
-
-const dateOrNull = ifElse(isNil, always(null), parseDate);
+const { trimmedStringIfDefined } = require('../../utils/parseString');
 
 module.exports = {
   timeStart: dateOrNull,
@@ -22,4 +14,5 @@ module.exports = {
   sort: defaultTo('desc'),
   after: identity,
   ids: parseArrayQuery,
+  query: trimmedStringIfDefined,
 };

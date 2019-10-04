@@ -1,31 +1,30 @@
 const { groupBy, map, pipe, toPairs } = require('ramda');
 const { addMissingCandles, transformCandle } = require('../transformResults');
 const { candleMonoid } = require('../candleMonoid');
-const { Interval } = require('../../../types');
+const { interval, Unit } = require('../../../types');
 const { floor, trunc } = require('../../../utils/date');
-const concatAll = require('../../../utils/fp/concatAll');
-const tap = require('../../../utils/tap');
+const { concatAll } = require('../../../utils/fp/concatAll');
 
-const truncToMinutes = trunc('minutes');
+const truncToMinutes = trunc(Unit.Minute);
 
 const oneDayCandles = require('./mocks/oneDayCandles');
 const monthCandles = require('./mocks/monthCandles');
 const yearCandles = require('./mocks/yearCandles');
 
-const date1 = new Date('2018-11-01T00:00:00+03:00'),
-  date2 = new Date('2018-12-01T00:00:00+03:00');
+const date1 = new Date('2018-11-01T00:00:00.000Z'),
+  date2 = new Date('2018-12-01T00:00:00.000Z');
 
-const day = Interval('1d'),
-  minute = Interval('1m'),
-  month = Interval('1M');
+const day = interval('1d').unsafeGet(),
+  minute = interval('1m').unsafeGet(),
+  month = interval('1M').unsafeGet();
 
 const addMissing1mCandles = addMissingCandles(minute),
   addMissing1dCandles = addMissingCandles(day),
-  addMissing1MCandles = addMissingCandles(month)
+  addMissing1MCandles = addMissingCandles(month);
 
 describe('add missing candles', () => {
   describe('with 1 minute interval', () => {
-    it('should add empty candles for period with 1 candle at half of month', () => {
+    it('should add empty candles to list of one candle for 1M period including the 1st day of next M', () => {
       expect(
         pipe(
           groupBy(candle =>
@@ -36,7 +35,7 @@ describe('add missing candles', () => {
         )(oneDayCandles).length
       ).toBe(43201);
     });
-    it('should add empty candles for period with 1 candle at each day', () => {
+    it('should add empty candles to list of thirty candles for 1M period including the 1st day of next M', () => {
       expect(
         pipe(
           groupBy(candle =>
@@ -50,7 +49,7 @@ describe('add missing candles', () => {
   });
 
   describe('with 1 day interval', () => {
-    it('should add empty candles in period with 1 candle at half', () => {
+    it('should add empty candles to list of one candle for 1M period including the 1st day of next M', () => {
       expect(
         pipe(
           groupBy(candle =>
@@ -59,10 +58,10 @@ describe('add missing candles', () => {
           addMissing1dCandles(date1, date2),
           toPairs
         )(oneDayCandles).length
-      ).toBe(30);
+      ).toBe(31);
     });
 
-    it('should not add candles in period with 1 candle at each interval', () => {
+    it('should not add any candles to list of thirty candles for 1M period including the 1st day of next M', () => {
       expect(
         pipe(
           groupBy(candle =>
@@ -71,16 +70,19 @@ describe('add missing candles', () => {
           addMissing1dCandles(date1, date2),
           toPairs
         )(monthCandles).length
-      ).toBe(30);
+      ).toBe(31);
     });
 
-    it('should not add candles in period with 1 candle at each interval', () => {
+    it('should not add candles to list of twenty candles for 1Y period including the last day of month', () => {
       expect(
         pipe(
           groupBy(candle =>
             truncToMinutes(floor(month, new Date(candle.time_start)))
           ),
-          addMissing1MCandles(new Date('2017-10-01T00:00:00.000Z'), new Date('2018-10-01T00:00:00.000Z')),
+          addMissing1MCandles(
+            new Date('2017-10-01T00:00:00.000Z'),
+            new Date('2018-10-01T00:00:00.000Z')
+          ),
           toPairs
         )(yearCandles).length
       ).toBe(13);
@@ -90,7 +92,7 @@ describe('add missing candles', () => {
 
 describe('candle monoid', () => {
   it('should calculate 1 candle for 1 interval', () => {
-    expect(concatAll(candleMonoid, monthCandles)).toMatchSnapshot();
+    expect(concatAll(candleMonoid)(monthCandles)).toMatchSnapshot();
   });
 
   it('should calculate several candles for period with several intervals', () => {

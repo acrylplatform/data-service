@@ -7,7 +7,7 @@ module.exports = async ctx => {
 
   ctx.state.returnValue = {
     version,
-    github: 'https://github.com/acrylplatform/data-service',
+    github: 'https://github.com/wavesplatform/data-service',
   };
 
   if (process.env.DOCS_URL)

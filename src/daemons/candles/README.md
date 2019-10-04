@@ -3,11 +3,11 @@
 ## About the image
 This Docker image contains scripts and configs to run Data Service Candles Daemon. The image adds functionality to [Data Service](https://github.com/wavesplatform/data-service) to calculate and update DEX candles inside the Postgres database (see Requirements).
 
-Container downloads source code and configuration files from the [repository](https://github.com/acrylplatform/data-service) and runs it.  
+Container downloads source code and configuration files from the [repository](https://github.com/wavesplatform/data-service) and runs it.  
  
 ## Requirements ⚠️
 
-1. PostgreSQL 10 database with a table structure found in [acrylplatform/blockchain-postgres-sync](https://github.com/acrylplatform/blockchain-postgres-sync)
+1. PostgreSQL 10 database with a table structure found in [wavesplatform/blockchain-postgres-sync](https://github.com/wavesplatform/blockchain-postgres-sync)
 2. Downloaded and continuously updated blockchain data in the database
 2. Docker for running the service in a container
 

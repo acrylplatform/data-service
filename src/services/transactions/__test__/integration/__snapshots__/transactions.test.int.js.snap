@@ -8,11 +8,15 @@ Object {
     "fee": "0.001",
     "height": 922106,
     "id": "21BmkGpk98wWHrCydjwTFvHWPfQxtH5NEQd9X7wUpi5R",
+    "proofs": Array [
+      "54qNaDCCC3LoprhNcd6C4ytRbB2chDpYxEusmyVgmPg7PNQjvi7Ckc13mBn1M3zf8T5YgzfWDMnvE9rRLYyGSkSu",
+    ],
     "sender": "3P2DQSKgE7Hw9VhHfu5TkJxsh5GFRfShQpK",
     "senderPublicKey": "FTY2T2HLvyR7XQTvn5Eu56B8qGXcvosutTRq5TatcTMp",
     "signature": "54qNaDCCC3LoprhNcd6C4ytRbB2chDpYxEusmyVgmPg7PNQjvi7Ckc13mBn1M3zf8T5YgzfWDMnvE9rRLYyGSkSu",
     "timestamp": 2018-03-17T20:22:43.701Z,
     "type": 10,
+    "version": 1,
   },
 }
 `;
@@ -28,11 +32,15 @@ Object {
         "fee": "0.001",
         "height": 922106,
         "id": "21BmkGpk98wWHrCydjwTFvHWPfQxtH5NEQd9X7wUpi5R",
+        "proofs": Array [
+          "54qNaDCCC3LoprhNcd6C4ytRbB2chDpYxEusmyVgmPg7PNQjvi7Ckc13mBn1M3zf8T5YgzfWDMnvE9rRLYyGSkSu",
+        ],
         "sender": "3P2DQSKgE7Hw9VhHfu5TkJxsh5GFRfShQpK",
         "senderPublicKey": "FTY2T2HLvyR7XQTvn5Eu56B8qGXcvosutTRq5TatcTMp",
         "signature": "54qNaDCCC3LoprhNcd6C4ytRbB2chDpYxEusmyVgmPg7PNQjvi7Ckc13mBn1M3zf8T5YgzfWDMnvE9rRLYyGSkSu",
         "timestamp": 2018-03-17T20:22:43.701Z,
         "type": 10,
+        "version": 1,
       },
     },
     Object {
@@ -42,14 +50,21 @@ Object {
         "fee": "0.001",
         "height": 922106,
         "id": "HbgSfoQ7ftAF3TUQNovbFnohsRK7AdztFznrJHTqH7F7",
+        "proofs": Array [
+          "4oA22v2NsNNJafLJVEqwSJF74XvN1pxh9d72k2pe8kheMjrTf8E4exLUGAoGKKrZYcw9UzxVgFoeNNBQjcqRajHW",
+        ],
         "sender": "3P2DQSKgE7Hw9VhHfu5TkJxsh5GFRfShQpK",
         "senderPublicKey": "FTY2T2HLvyR7XQTvn5Eu56B8qGXcvosutTRq5TatcTMp",
         "signature": "4oA22v2NsNNJafLJVEqwSJF74XvN1pxh9d72k2pe8kheMjrTf8E4exLUGAoGKKrZYcw9UzxVgFoeNNBQjcqRajHW",
         "timestamp": 2018-03-17T20:22:39.158Z,
         "type": 10,
+        "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -122,7 +137,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -158,7 +176,10 @@ Object {
         "type": 12,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -218,7 +239,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -304,7 +328,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -469,7 +496,10 @@ Object {
         "type": 7,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -520,7 +550,10 @@ Object {
         "type": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -538,6 +571,7 @@ Object {
     "name": "CORE",
     "quantity": "0.01",
     "reissuable": false,
+    "script": null,
     "sender": "3P7HKYe6HB8eK7uXxrztEYUSzZQyyYRnWHg",
     "senderPublicKey": "9ASL55YRs78rW5hjRAgjyWww7QqP99HwuB8dG6AqtnFm",
     "signature": "iN5XQwAAQN1ySVF7BwV8ash6sEW7b1zCH8XhYBDbqZwPMeZHQyvNJtjq46Q9VCDjPv4UV2rFCKvdyev35dTUKAX",
@@ -564,6 +598,7 @@ Object {
         "name": "CORE",
         "quantity": "0.01",
         "reissuable": false,
+        "script": null,
         "sender": "3P7HKYe6HB8eK7uXxrztEYUSzZQyyYRnWHg",
         "senderPublicKey": "9ASL55YRs78rW5hjRAgjyWww7QqP99HwuB8dG6AqtnFm",
         "signature": "iN5XQwAAQN1ySVF7BwV8ash6sEW7b1zCH8XhYBDbqZwPMeZHQyvNJtjq46Q9VCDjPv4UV2rFCKvdyev35dTUKAX",
@@ -584,6 +619,7 @@ Object {
         "name": "CoreMedia",
         "quantity": "0.01",
         "reissuable": false,
+        "script": null,
         "sender": "3P7HKYe6HB8eK7uXxrztEYUSzZQyyYRnWHg",
         "senderPublicKey": "9ASL55YRs78rW5hjRAgjyWww7QqP99HwuB8dG6AqtnFm",
         "signature": "MwtQXaycbwF3ZUQyZJ6f2viA7UEZx7esH8ysgc2WsLYtNKx7L7oPJ3XDLCSUebY96hfFqPYbEiWnE5gDJibf1YS",
@@ -592,7 +628,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -652,7 +691,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -709,7 +751,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -1981,7 +2026,70 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
+  ],
+}
+`;
+
+exports[`payment transactions service get fetches real tx 1`] = `
+Object {
+  "__type": "transaction",
+  "data": Object {
+    "amount": "5",
+    "fee": "0.001",
+    "height": 251375,
+    "id": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
+    "recipient": "3PR3xnzz1oD58K73T1dkLuVMJG8UxDZZJzV",
+    "sender": "3P89Gonteikxhpup4ExAf5SaQyHVzeQqvNg",
+    "senderPublicKey": "4uQeVj5tqViQh7yWWGStvkEG1Zmhx6uasJtWCJziofM",
+    "signature": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
+    "timestamp": 2016-11-28T09:51:07.653Z,
+    "type": 2,
+  },
+}
+`;
+
+exports[`payment transactions service mget fetches real txs with nulls for unreal 1`] = `
+Object {
+  "__type": "list",
+  "data": Array [
+    Object {
+      "__type": "transaction",
+      "data": Object {
+        "amount": "5",
+        "fee": "0.001",
+        "height": 251375,
+        "id": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
+        "recipient": "3PR3xnzz1oD58K73T1dkLuVMJG8UxDZZJzV",
+        "sender": "3P89Gonteikxhpup4ExAf5SaQyHVzeQqvNg",
+        "senderPublicKey": "4uQeVj5tqViQh7yWWGStvkEG1Zmhx6uasJtWCJziofM",
+        "signature": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
+        "timestamp": 2016-11-28T09:51:07.653Z,
+        "type": 2,
+      },
+    },
+    Object {
+      "__type": "transaction",
+      "data": Object {
+        "amount": "0.00001",
+        "fee": "1e-8",
+        "height": 21874,
+        "id": "119tSRyy2sAFcAS5Htb6m4FtsCtJsacAwarg75WpsAf9HgMJnpvgcLou31ARxxEp1WMuTmGTRNUeghCgrS4PxDT",
+        "recipient": "3PBrHA9R2Rf6xg4keyymMvrvNQmc6oQhxgD",
+        "sender": "3PNqJ6aaGAL15fmPHhWvk3V6yqL6RpptMZp",
+        "senderPublicKey": "HCt7iRNfcWSv4A6yPgcLaBQ6URWAa8ZdPQC9FUkbbJSW",
+        "signature": "119tSRyy2sAFcAS5Htb6m4FtsCtJsacAwarg75WpsAf9HgMJnpvgcLou31ARxxEp1WMuTmGTRNUeghCgrS4PxDT",
+        "timestamp": 2016-06-27T10:07:19.161Z,
+        "type": 2,
+      },
+    },
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -2044,64 +2152,10 @@ Object {
         "version": 1,
       },
     },
-    null,
-  ],
-}
-`;
-
-exports[`send transactions service get fetches real tx 1`] = `
-Object {
-  "__type": "transaction",
-  "data": Object {
-    "amount": "5",
-    "fee": "0.001",
-    "height": 251375,
-    "id": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
-    "recipient": "3PR3xnzz1oD58K73T1dkLuVMJG8UxDZZJzV",
-    "sender": "3P89Gonteikxhpup4ExAf5SaQyHVzeQqvNg",
-    "senderPublicKey": "4uQeVj5tqViQh7yWWGStvkEG1Zmhx6uasJtWCJziofM",
-    "signature": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
-    "timestamp": 2016-11-28T09:51:07.653Z,
-    "type": 2,
-  },
-}
-`;
-
-exports[`send transactions service mget fetches real txs with nulls for unreal 1`] = `
-Object {
-  "__type": "list",
-  "data": Array [
     Object {
       "__type": "transaction",
-      "data": Object {
-        "amount": "5",
-        "fee": "0.001",
-        "height": 251375,
-        "id": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
-        "recipient": "3PR3xnzz1oD58K73T1dkLuVMJG8UxDZZJzV",
-        "sender": "3P89Gonteikxhpup4ExAf5SaQyHVzeQqvNg",
-        "senderPublicKey": "4uQeVj5tqViQh7yWWGStvkEG1Zmhx6uasJtWCJziofM",
-        "signature": "5jpwaJnERa8Gr1ChgrNYnmxm2EtZ4KHC5bW1ZLL7LCY1bUV9gFWFAGjpJaPDCawmFzguqGBgYDyeocpEsKWeYDM1",
-        "timestamp": 2016-11-28T09:51:07.653Z,
-        "type": 2,
-      },
+      "data": null,
     },
-    Object {
-      "__type": "transaction",
-      "data": Object {
-        "amount": "0.00001",
-        "fee": "1e-8",
-        "height": 21874,
-        "id": "119tSRyy2sAFcAS5Htb6m4FtsCtJsacAwarg75WpsAf9HgMJnpvgcLou31ARxxEp1WMuTmGTRNUeghCgrS4PxDT",
-        "recipient": "3PBrHA9R2Rf6xg4keyymMvrvNQmc6oQhxgD",
-        "sender": "3PNqJ6aaGAL15fmPHhWvk3V6yqL6RpptMZp",
-        "senderPublicKey": "HCt7iRNfcWSv4A6yPgcLaBQ6URWAa8ZdPQC9FUkbbJSW",
-        "signature": "119tSRyy2sAFcAS5Htb6m4FtsCtJsacAwarg75WpsAf9HgMJnpvgcLou31ARxxEp1WMuTmGTRNUeghCgrS4PxDT",
-        "timestamp": 2016-06-27T10:07:19.161Z,
-        "type": 2,
-      },
-    },
-    null,
   ],
 }
 `;
@@ -2164,7 +2218,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -2230,7 +2287,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
@@ -2297,7 +2357,10 @@ Object {
         "version": 1,
       },
     },
-    null,
+    Object {
+      "__type": "transaction",
+      "data": null,
+    },
   ],
 }
 `;
